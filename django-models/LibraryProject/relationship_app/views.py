@@ -19,7 +19,7 @@ class LibraryDetailView(DetailView):
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
     
-  class CustomLoginView(LoginView):
+class CustomLoginView(LoginView):
     template_name = 'relationship_app/login.html'
     success_url = reverse_lazy('home')  # Redirect to home or any other page after login
 
