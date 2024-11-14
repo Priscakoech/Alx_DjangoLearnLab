@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from .models import Book
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
-from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
 from django.views import View
 # Create your views here.
 def list_books(request):
