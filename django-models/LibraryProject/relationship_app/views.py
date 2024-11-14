@@ -7,6 +7,13 @@ from django.views import View
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import permission_required
+from .models import Book
+from .forms import BookForm
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LogoutView
+
 # Create your views here.
 def list_books(request):
     books = Book.objects.all()
@@ -70,4 +77,13 @@ def librarian_view(request):
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
-    
+@permission_required('relationship_app.can_add_book', raise_exception=True)
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')  # redirect to the list of books or a success page
+    else:
+        form = BookForm()
+    return render(request, 'relationship_app/add_book.html', {'form': form})   
