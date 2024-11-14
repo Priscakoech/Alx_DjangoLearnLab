@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import list_books
 from .views import CustomLoginView, CustomLogoutView, RegisterView
-
+from .views import RegisterView
 
 urlpatterns = [
     path('books/', views.list_books, name='list_books'),  # Function-based view
