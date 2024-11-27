@@ -43,11 +43,11 @@ def book_list(request):
     return render(request, 'bookshelf/book_list.html', {'books': books})
 
 from django.shortcuts import render
-from .forms import BookSearchForm
+from .forms import ExampleForm
 from .models import Book
 
 def search_books(request):
-    form = BookSearchForm(request.GET or None)
+    form = ExampleForm(request.GET or None)
     books = []
     if form.is_valid():
         query = form.cleaned_data['search_query']
