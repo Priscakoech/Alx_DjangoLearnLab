@@ -142,3 +142,44 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     ...
 ]
+
+# Redirect all HTTP traffic to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year in seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Ensure browser-side security by enabling secure content loading
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
+# Enforce HTTPS redirection for all requests
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS) settings:
+# Instruct browsers to use HTTPS exclusively for this site.
+SECURE_HSTS_SECONDS = 31536000  # 1 year in seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include subdomains in HSTS policy
+SECURE_HSTS_PRELOAD = True  # Allow site to be preloaded in browsers' HSTS lists
+
+# Prevent MIME type sniffing and enable browser XSS filters
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Protect against MIME-sniffing attacks
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filter
+
+# Ensure cookies are only transmitted over HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Secure cookies settings:
+# Ensures session and CSRF cookies are sent only over HTTPS
+SESSION_COOKIE_SECURE = True  # Secure session cookies
+CSRF_COOKIE_SECURE = True  # Secure CSRF cookies
+
+# Prevent clickjacking by disallowing your site to be displayed in frames
+X_FRAME_OPTIONS = "DENY"
+
+# Clickjacking protection:
+# Prevent the site from being embedded in an iframe on another domain
+X_FRAME_OPTIONS = "DENY"
