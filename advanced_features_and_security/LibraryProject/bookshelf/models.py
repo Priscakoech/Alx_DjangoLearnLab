@@ -27,7 +27,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields) 
     
- class CustomUser(AbstractUser):
+class CustomUser(AbstractUser):
     email = models.EmailField(unique=True, blank=False)
     date_of_birth = models.DateField(null=True, blank=True)
     profile_photo = models.ImageField(null=True, blank=True)
@@ -45,4 +45,21 @@ from django.db import models
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     bio = models.TextField()
-   
+
+from django.db import models
+
+class Document(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+    class Meta:
+        permissions = [
+            ('can_view', 'Can view documents'),
+            ('can_create', 'Can create documents'),
+            ('can_edit', 'Can edit documents'),
+            ('can_delete', 'Can delete documents'),
+        ]
+
+    def __str__(self):
+        return self.title
+ 
