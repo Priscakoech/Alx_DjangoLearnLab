@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://cdn.example.com/styles.css"> <!-- Replace with your stylesheet -->
+</head>
+<body>
+    <header>
+        <h1>Library Book List</h1>
+    </header>
+    <main>
+        <!-- Search Form -->
+        <section>
+            <h2>Search Books</h2>
+            <form method="get" action="{% url 'search_books' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <!-- Book List -->
+        <section>
+            <h2>Available Books</h2>
+            {% if books %}
+                <ul>
+                    {% for book in books %}
+                        <li>
+                            <strong>{{ book.title }}</strong> by {{ book.author }} ({{ book.publication_year }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No books found. Try searching for something else!</p>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Library Project. All rights reserved.</p>
+    </footer>
+</body>
+</html>
