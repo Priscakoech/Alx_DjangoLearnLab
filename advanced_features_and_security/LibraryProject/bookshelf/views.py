@@ -33,3 +33,11 @@ def document_delete(request, pk):
         document.delete()
         return redirect('document_list')
     return render(request, 'documents/document_delete.html', {'document': document})
+from django.shortcuts import render
+from django.contrib.auth.decorators import permission_required
+from .models import Book
+
+@permission_required('bookshelf.can_view_books', raise_exception=True)
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})
