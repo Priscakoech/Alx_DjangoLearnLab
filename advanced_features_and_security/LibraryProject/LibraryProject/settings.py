@@ -183,3 +183,6 @@ X_FRAME_OPTIONS = "DENY"
 # Clickjacking protection:
 # Prevent the site from being embedded in an iframe on another domain
 X_FRAME_OPTIONS = "DENY"
+
+SECURE_PROXY_SSL_HEADER = True
+HTTP_X_FORWARDED_PROTO =True
