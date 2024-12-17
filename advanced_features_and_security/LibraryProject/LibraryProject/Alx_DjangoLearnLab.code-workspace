@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../advanced_api_project"
+		},
+		{
+			"path": "../../../advanced_api_project/advanced_api_project"
+		}
+	],
+	"settings": {}
+}
