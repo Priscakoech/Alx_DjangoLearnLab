@@ -10,7 +10,10 @@ class BookListView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly] # allow unauthenticated users to read, but not write
-  
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'author_name', 'publication_year']
+    search_fields = ['title', 'author_name']
+    ordering_fields = ['title', 'publication_year']
   # retrieve a single book by id  
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()

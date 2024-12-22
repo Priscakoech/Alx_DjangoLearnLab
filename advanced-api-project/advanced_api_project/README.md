@@ -21,3 +21,17 @@
 ### 5. Delete Book
 - **DELETE /api/books/{id}/**: Delete a book by ID.
   - Requires authentication (only authenticated users can delete).
+
+### Advanced Query Capabilities
+
+#### Filtering
+You can filter books by the following fields:
+- `title`
+- `author__name`
+- `publication_year`
+
+Example:
+```http
+GET /api/books/?title=SomeTitle
+GET /api/books/?author__name=SomeAuthor
+GET /api/books/?publication_year=2020
