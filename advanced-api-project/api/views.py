@@ -4,7 +4,7 @@ from .serializers import BookSerializer
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters import rest_framework
-from rest_framework import OrderingFilter, SearchFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 # Create your views here.
 # ListView: Retrieve all books
@@ -16,6 +16,7 @@ class BookListView(generics.ListCreateAPIView):
     filterset_fields = ['title', 'author_name', 'publication_year']
     search_fields = ['title', 'author_name']
     ordering_fields = ['title', 'publication_year']
+    ordering = ['title']
   # retrieve a single book by id  
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
