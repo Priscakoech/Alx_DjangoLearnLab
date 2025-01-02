@@ -26,3 +26,9 @@ def profile_view(request):
         user.save()
         messages.success(request, "Profile updated successfully.")
     return render(request, 'registration/profile.html', {'user': request.user})
+
+def home(request):
+    return render(request, 'home.html')
+
+def posts_view(request):
+    return render(request, 'posts.html')

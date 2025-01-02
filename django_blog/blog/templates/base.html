@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Blog{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'registration/login.html' %}">
-    <link rel="stylesheet" href="{% static 'registration/register.html' %}">
+   
 
 </head>
 <body>
@@ -23,7 +23,8 @@
 
     <div class="content">
         {% block content %}
-        <!-- Page-specific content goes here -->
+        <h1>Welcome to the Home Page!</h1>
+        <p>This is the homepage content.</p>
         {% endblock %}
     </div>
 
