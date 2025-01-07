@@ -16,7 +16,7 @@ class Postform(forms.ModelForm):
         model = Post
         fields = ['title', 'content']
     
-class CommentForm(forms.ModelsForm):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
