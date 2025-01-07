@@ -8,3 +8,49 @@
         <a href="{{ post.get_absolute_url }}/delete">Delete</a>
     {% endif %}
 {% endblock %}
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <!-- Post Content -->
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <p>Author: {{ post.author }}</p>
+
+    {% if user == post.author %}
+        <a href="{{ post.get_absolute_url }}/edit">Edit</a> |
+        <a href="{{ post.get_absolute_url }}/delete">Delete</a>
+    {% endif %}
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h3>Comments</h3>
+        
+        <!-- Display Comments -->
+        {% for comment in post.comments.all %}
+            <div class="comment">
+                <p><strong>{{ comment.author.username }}</strong> ({{ comment.created_at }})</p>
+                <p>{{ comment.content }}</p>
+                {% if comment.author == user %}
+                    <a href="{% url 'edit_comment' comment.id %}">Edit</a> |
+                    <a href="{% url 'confirm_delete_comment' comment.id %}">Delete</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Comment Form for Authenticated Users -->
+    {% if user.is_authenticated %}
+        <h3>Add a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>Please log in to add a comment.</p>
+    {% endif %}
+    
+{% endblock %}
+
