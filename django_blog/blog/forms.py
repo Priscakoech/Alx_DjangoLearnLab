@@ -21,7 +21,7 @@ class CommentForm(forms.ModelsForm):
         model = Comment
         fields = ['content']
     
-      def clean_content(self):
+    def clean_content(self):
         content = self.cleaned_data.get('content')
         if not content:
             raise forms.ValidationError("Comment content cannot be empty.")
