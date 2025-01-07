@@ -20,6 +20,18 @@ class CommentForm(forms.ModelsForm):
     class Meta:
         model = Comment
         fields = ['content']
-        
+    
+      def clean_content(self):
+        content = self.cleaned_data.get('content')
+        if not content:
+            raise forms.ValidationError("Comment content cannot be empty.")
+        return content
+    
+    def clean_content(self):
+        content = self.cleaned_data.get('content')
+        if len(content) < 5:
+            raise forms.ValidationError("Your comment is too short. Please write at least 5 characters.")
+        return content
+      
         
         
