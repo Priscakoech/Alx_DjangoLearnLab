@@ -30,6 +30,6 @@ urlpatterns = [
     path('tag/<int:tag_id>/', views.posts_by_tag, name='tagged_posts'),
     path('search/', views.search, name='search'),
     path('tags/<str:tag_name>/', views.posts_by_tag, name='tagged_posts'),
-    path('tags/<slug:tsg_slug>/',)
+    path('tags/<slug:tag_slug>/',)
     path('PostByTagListView.as_view()')
 ]  
