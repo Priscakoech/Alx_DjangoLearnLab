@@ -9,6 +9,10 @@ User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     # Fields for password and password confirmation
+     username = serializers.CharField(
+        required=True,
+        style={'input_type': 'text'}
+    )
     password = serializers.CharField(
         write_only=True,
         required=True,
