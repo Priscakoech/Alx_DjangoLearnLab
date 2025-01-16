@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.authtoken.models import Token
+
 # Get the custom user model
 User = get_user_model()
 
@@ -34,26 +35,26 @@ class RegisterSerializer(serializers.ModelSerializer):
         # Remove password2 from validated_data
         validated_data.pop('password2', None)
 
-        # Use get_user_model().objects.create_user to create a new user
+        # Create the user
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password']
         )
 
+        # Create a token for the user
+        Token.objects.create(user=user)
+
         return user
 
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(
-    required=True,
-    style={'input_type': 'text'}
+        required=True,
+        style={'input_type': 'text'}
     )
     password = serializers.CharField(
         write_only=True,
         required=True,
         style={'input_type': 'password'}
     )
-    
-    Token.objects.create(User=User)
-    return User
